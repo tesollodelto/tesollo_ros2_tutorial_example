@@ -1,0 +1,83 @@
+# DG-5F 오른손 JTC 설정 (dg5f_driver/config/dg5f_right_controller.yaml 기반)
+/**/controller_manager:
+  ros__parameters:
+    update_rate: 100                     # 제어 루프 주기 [Hz]
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    dg5f_right_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+/**/joint_state_broadcaster:
+  ros__parameters:
+    update_rate: 100                     # controller_manager 주기 이하
+    joints: [rj_dg_1_1, rj_dg_1_2, rj_dg_1_3, rj_dg_1_4,
+             rj_dg_2_1, rj_dg_2_2, rj_dg_2_3, rj_dg_2_4,
+             rj_dg_3_1, rj_dg_3_2, rj_dg_3_3, rj_dg_3_4,
+             rj_dg_4_1, rj_dg_4_2, rj_dg_4_3, rj_dg_4_4,
+             rj_dg_5_1, rj_dg_5_2, rj_dg_5_3, rj_dg_5_4]
+
+/**/dg5f_right_controller:
+  ros__parameters:
+    joints: [rj_dg_1_1, rj_dg_1_2, rj_dg_1_3, rj_dg_1_4,
+             rj_dg_2_1, rj_dg_2_2, rj_dg_2_3, rj_dg_2_4,
+             rj_dg_3_1, rj_dg_3_2, rj_dg_3_3, rj_dg_3_4,
+             rj_dg_4_1, rj_dg_4_2, rj_dg_4_3, rj_dg_4_4,
+             rj_dg_5_1, rj_dg_5_2, rj_dg_5_3, rj_dg_5_4]
+    command_interfaces: [effort]
+    state_interfaces: [position, velocity]
+
+    allow_partial_joints_goal: true
+    allow_nonzero_velocity_at_trajectory_end: false
+    action_monitor_rate: 100.0           # 액션 피드백 주기 [Hz]
+    cmd_timeout: 0.0                     # 0이면 사용 안 함
+
+    constraints:
+      stopped_velocity_tolerance: 0.05   # 정지 판정 속도 [rad/s]
+      goal_time: 0.0                     # 0이면 도달 시각 검사 안 함
+
+    gains:
+      # 엄지
+      rj_dg_1_1: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_1_2: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_1_3: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_1_4: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      # 검지
+      rj_dg_2_1: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_2_2: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_2_3: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_2_4: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      # 중지
+      rj_dg_3_1: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_3_2: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_3_3: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_3_4: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      # 약지
+      rj_dg_4_1: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_4_2: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_4_3: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_4_4: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      # 소지
+      rj_dg_5_1: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_5_2: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_5_3: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}
+      rj_dg_5_4: {p: 1.5, i: 0.0, d: 0.0, ff_velocity_scale: 0.0001,
+                  u_clamp_max: 3.0, u_clamp_min: -3.0, antiwindup_strategy: none}

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- 이득 확인용 mock: 명령 인터페이스를 실제 핸드와 동일한 effort로 선언합니다.
+     mock은 effort 명령을 위치로 변환하지 않으므로 관절은 움직이지 않으며,
+     컨트롤러 출력(effort)만 확인할 수 있습니다. -->
+<robot name="dg5f_right" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find dg5f_description)/urdf/dg5f_macro.xacro" />
+  <link name="base_link" />
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="rl_dg_base_link" />
+  </joint>
+  <xacro:dg5f_hand side="right" base_type="default" with_mount="true"
+    tip1_type="default" tip2_type="default" tip3_type="default"
+    tip4_type="default" tip5_type="default" />
+
+  <xacro:macro name="effort_joint" params="f j">
+    <joint name="rj_dg_${f}_${j}">
+      <command_interface name="effort" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+  </xacro:macro>
+  <xacro:macro name="finger" params="f">
+    <xacro:effort_joint f="${f}" j="1" />
+    <xacro:effort_joint f="${f}" j="2" />
+    <xacro:effort_joint f="${f}" j="3" />
+    <xacro:effort_joint f="${f}" j="4" />
+  </xacro:macro>
+
+  <ros2_control name="DG5FRightMockEffort" type="system">
+    <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+    </hardware>
+    <xacro:finger f="1" />
+    <xacro:finger f="2" />
+    <xacro:finger f="3" />
+    <xacro:finger f="4" />
+    <xacro:finger f="5" />
+  </ros2_control>
+</robot>
