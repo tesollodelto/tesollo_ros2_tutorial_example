@@ -52,7 +52,7 @@ colcon build --symlink-install --packages-up-to dg5f_driver dg5f_description
 ## 빌드
 
 드라이버 워크스페이스를 source한 터미널에서 빌드합니다.
-이 저장소의 `tesollo_ros2_tutorial_ws` 폴더가 문서의 `~/hand_ws`에 해당합니다.
+이 저장소의 `tesollo_ros2_tutorial_ws` 폴더가 문서의 `~/tesollo_ros2_tutorial_ws`에 해당합니다.
 
 ```bash
 cd ~

@@ -52,7 +52,7 @@ colcon build --symlink-install --packages-up-to dg5f_driver dg5f_description
 ## Build
 
 Build in a terminal where the driver workspace has been sourced.
-The `tesollo_ros2_tutorial_ws` directory of this repository corresponds to `~/hand_ws` in the guide.
+The `tesollo_ros2_tutorial_ws` directory of this repository corresponds to `~/tesollo_ros2_tutorial_ws` in the guide.
 
 ```bash
 cd ~
