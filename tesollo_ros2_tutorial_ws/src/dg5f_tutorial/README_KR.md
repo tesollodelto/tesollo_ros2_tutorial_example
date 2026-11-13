@@ -4,7 +4,7 @@
 
 TESOLLO 기술 가이드 「튜토리얼: ROS 2 설치부터 DG-5F 제어까지」의 예제 패키지입니다.
 DELTO DG-5F 오른손을 ros2_control 드라이버(`dg5f_driver`)로 제어하는 Python 노드, 런치 파일, 컨트롤러 설정을 담고 있습니다.
-문서의 코드 블록과 이 저장소의 파일은 내용이 같습니다.
+실행되는 코드는 문서의 코드 블록과 같으며, 이 저장소의 파일에는 영문 주석이 함께 들어 있습니다.
 
 - 가이드: [TESOLLO 기술 가이드](https://www.tesollo.com/ko/resources/category/technical-guides)
 - 드라이버: [tesollo_ros2](https://github.com/tesollodelto/tesollo_ros2)
@@ -52,17 +52,19 @@ colcon build --symlink-install --packages-up-to dg5f_driver dg5f_description
 ## 빌드
 
 드라이버 워크스페이스를 source한 터미널에서 빌드합니다.
+이 저장소의 `tesollo_ros2_tutorial_ws` 폴더가 문서의 `~/hand_ws`에 해당합니다.
 
 ```bash
-mkdir -p ~/hand_ws/src && cd ~/hand_ws/src
-git clone <저장소 주소> dg5f_tutorial
+cd ~
+git clone https://github.com/tesollodelto/tesollo_ros2_tutorial_example.git
 
 source ~/ros2_ws/install/setup.bash
-cd ~/hand_ws && colcon build --symlink-install
+cd ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws
+colcon build --symlink-install
 source install/setup.bash
 ```
 
-이후 새 터미널에서는 `source ~/ros2_ws/install/setup.bash`와 `source ~/hand_ws/install/setup.bash`를 차례로 실행합니다.
+이후 새 터미널에서는 `source ~/ros2_ws/install/setup.bash`와 `source ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws/install/setup.bash`를 차례로 실행합니다.
 
 ## 실행
 
@@ -140,7 +142,7 @@ PID 통합 컨트롤러를 사용할 때는 `dg5f_right_pid_all_controller.launc
 ## 테스트
 
 ```bash
-cd ~/hand_ws
+cd ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws
 colcon test --packages-select dg5f_tutorial
 colcon test-result --verbose
 ```

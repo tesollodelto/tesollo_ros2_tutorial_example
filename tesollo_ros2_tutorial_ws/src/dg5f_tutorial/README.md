@@ -4,7 +4,7 @@
 
 Example package for the TESOLLO technical guide "Tutorial: From ROS 2 Installation to DG-5F Control".
 It contains Python nodes, launch files, and controller configuration for controlling the DELTO DG-5F right hand through the ros2_control driver (`dg5f_driver`).
-The code blocks in the guide and the files in this repository are identical.
+The executable code is identical to the code blocks in the guide; the files in this repository additionally carry English comments.
 
 - Guide: [TESOLLO Technical Guides](https://www.tesollo.com/ko/resources/category/technical-guides)
 - Driver: [tesollo_ros2](https://github.com/tesollodelto/tesollo_ros2)
@@ -52,17 +52,19 @@ colcon build --symlink-install --packages-up-to dg5f_driver dg5f_description
 ## Build
 
 Build in a terminal where the driver workspace has been sourced.
+The `tesollo_ros2_tutorial_ws` directory of this repository corresponds to `~/hand_ws` in the guide.
 
 ```bash
-mkdir -p ~/hand_ws/src && cd ~/hand_ws/src
-git clone <repository URL> dg5f_tutorial
+cd ~
+git clone https://github.com/tesollodelto/tesollo_ros2_tutorial_example.git
 
 source ~/ros2_ws/install/setup.bash
-cd ~/hand_ws && colcon build --symlink-install
+cd ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws
+colcon build --symlink-install
 source install/setup.bash
 ```
 
-In every new terminal after that, run `source ~/ros2_ws/install/setup.bash` and then `source ~/hand_ws/install/setup.bash`, in that order.
+In every new terminal after that, run `source ~/ros2_ws/install/setup.bash` and then `source ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws/install/setup.bash`, in that order.
 
 ## Usage
 
@@ -140,7 +142,7 @@ When using the unified PID controller, launch the driver with `dg5f_right_pid_al
 ## Tests
 
 ```bash
-cd ~/hand_ws
+cd ~/tesollo_ros2_tutorial_example/tesollo_ros2_tutorial_ws
 colcon test --packages-select dg5f_tutorial
 colcon test-result --verbose
 ```

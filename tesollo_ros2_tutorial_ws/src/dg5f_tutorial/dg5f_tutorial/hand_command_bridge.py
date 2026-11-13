@@ -16,7 +16,9 @@ JOINTS = [f'rj_dg_{f}_{j}' for f in range(1, 6) for j in range(1, 5)]
 
 class HandCommandBridge(Node):
     """상위 노드(리타겟팅 등)의 관절 목표를 검사하여 컨트롤러로 전달합니다."""
-    """ Checks the joint targets from the upper node (retargeting, etc.) and passes them to the controller. """
+
+    """ Checks the joint targets from the upper node (retargeting, etc.)
+    and passes them to the controller. """
 
     def __init__(self):
         super().__init__('hand_command_bridge')
@@ -32,9 +34,12 @@ class HandCommandBridge(Node):
                 raise ValueError(f'{name} must be a positive number, got {value}')
 
         self.limits = {}
-        self.command = None      # 매 주기 발행하는 명령 (현재 자세에서 시작) every cycle command (starting from current pose)
-        self.target = None       # 상위 노드가 요청한 목표 (한계 적용 후) target requested by the upper node (after applying limits)
-        self.last_input = None   # 마지막으로 수락한 목표의 수신 시각 timestamp of the last accepted target
+        # every cycle command (starting from current pose)
+        self.command = None      # 매 주기 발행하는 명령 (현재 자세에서 시작)
+        # target requested by the upper node (after applying limits)
+        self.target = None       # 상위 노드가 요청한 목표 (한계 적용 후)
+        # timestamp of the last accepted target
+        self.last_input = None   # 마지막으로 수락한 목표의 수신 시각
 
         latched = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
         self.create_subscription(String, '/dg5f_right/robot_description',

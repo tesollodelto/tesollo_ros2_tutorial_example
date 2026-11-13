@@ -10,7 +10,9 @@ FLEX = [f'rj_dg_{f}_{j}' for f in range(2, 6) for j in (3, 4)]
 
 class FakeTarget(Node):
     """리타겟팅 노드 대신 손가락을 천천히 쥐었다 펴는 목표를 30 Hz로 발행합니다."""
-    """ Instead of retargeting node, it publishes a target that slowly closes and opens the fingers at 30 Hz. """
+
+    """ Instead of retargeting node, it publishes a target that slowly closes
+    and opens the fingers at 30 Hz. """
 
     def __init__(self):
         super().__init__('fake_target')

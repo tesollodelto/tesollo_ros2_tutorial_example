@@ -23,7 +23,8 @@ class GraspDemo(Node):
 
     def send(self, poses_and_times, margin=5.0):
         """자세 시퀀스를 하나의 궤적으로 실행합니다. 파지 성공 여부는 판정하지 않습니다."""
-        """ Executes a sequence of poses as a single trajectory. Does not judge whether the grasp was successful. """
+        """ Executes a sequence of poses as a single trajectory.
+        Does not judge whether the grasp was successful. """
         goal = FollowJointTrajectory.Goal()
         goal.trajectory.joint_names = JOINTS
         for pose, t in poses_and_times:
